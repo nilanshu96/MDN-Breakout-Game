@@ -8,4 +8,9 @@ closePath draws a line from the current point to the start of the current sub-pa
 
 top left corner of canvas is 0,0
 rect(x pos, y pos, width, height) => all in pixels
+arc(x pos, y pos, radius, start angle, end angle, anticlockwise?) =>
+x,y => position of arc's centre
+radius of arc in pixels
+start and end angle of the arc in radians
+anticlockwise can be false or true. It tells the direction in which to draw the arc. It's optional.
 
