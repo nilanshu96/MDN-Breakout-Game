@@ -7,10 +7,16 @@ beginPath starts a new path and it removes the list of sub paths that might exis
 closePath draws a line from the current point to the start of the current sub-path
 
 top left corner of canvas is 0,0
+
 rect(x pos, y pos, width, height) => all in pixels
+
 arc(x pos, y pos, radius, start angle, end angle, anticlockwise?) =>
 x,y => position of arc's centre
 radius of arc in pixels
 start and end angle of the arc in radians
 anticlockwise can be false or true. It tells the direction in which to draw the arc. It's optional.
+
+clearRect(x1, y1, x2, y2) => clears the reactangle defined by the coordinates
+(x1, y1) => top left 
+(x2, y2) => bottom right
 
