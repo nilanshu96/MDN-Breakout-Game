@@ -2,6 +2,8 @@ let canvas = document.getElementById('tutorial');
 
 let ctx = canvas.getContext('2d');
 
+let interval;
+
 const ballRadius = 10;
 
 let x = canvas.width / 2;
@@ -36,15 +38,60 @@ function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   drawBall(x, y, ballRadius);
+  drawPaddle();
 
   if (x + dx < ballRadius || x + dx > canvas.width - ballRadius) dx = -dx;
-  if (y + dy < ballRadius || y + dy > canvas.height - ballRadius) dy = -dy;
+  if (y + dy < ballRadius) {
+    dy = -dy;
+  } else if (y + dy > canvas.height - ballRadius) {
+    if (x > paddleX && x < paddleX + paddleWidth) {
+      dy = -dy;
+    } else {
+      alert("Game Over!");
+      document.location.reload();
+      clearInterval(interval);
+    }
+  }
 
   x += dx;
   y += dy;
+
+  if (rightPressed) {
+    paddleX += 7;
+    if (paddleX + paddleWidth > canvas.width) {
+      paddleX = canvas.width - paddleWidth;
+    }
+  } else if (leftPressed) {
+    paddleX -= 7;
+    if (paddleX < 0) {
+      paddleX = 0
+    }
+  }
 }
 
-setInterval(draw, 10);
+let rightPressed = false;
+let leftPressed = false;
 
+function keyDownHandler(event) {
+
+  if (event.key === "ArrowRight" || event.key === "Right") {
+    rightPressed = true;
+  } else if (event.key === "ArrowLeft" || event.key === "Left") {
+    leftPressed = true;
+  }
+}
+
+function keyUpHandler(event) {
+  if (event.key === "ArrowRight" || event.key === "Right") {
+    rightPressed = false;
+  } else if (event.key === "ArrowLeft" || event.key === "Left") {
+    leftPressed = false;
+  }
+}
+
+interval = setInterval(draw, 10);
+
+document.addEventListener("keyup", keyUpHandler);
+document.addEventListener("keydown", keyDownHandler);
 
 
