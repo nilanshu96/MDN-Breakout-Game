@@ -19,6 +19,19 @@ function drawBall(x, y, radius) {
   ctx.closePath();
 }
 
+let paddleHeight = 10;
+let paddleWidth = 75;
+let paddleX = (canvas.width - paddleWidth) / 2;
+let paddleY = canvas.height - paddleHeight;
+
+function drawPaddle() {
+  ctx.beginPath();
+  ctx.rect(paddleX, paddleY, paddleWidth, paddleHeight);
+  ctx.fillStyle = "#0095DD";
+  ctx.fill();
+  ctx.closePath();
+}
+
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 

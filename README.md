@@ -8,7 +8,8 @@ closePath draws a line from the current point to the start of the current sub-pa
 
 top left corner of canvas is 0,0
 
-rect(x pos, y pos, width, height) => all in pixels
+rect(x pos, y pos, width, height) => all in pixels. 
+(x,y) => position of rectangle's top left corner
 
 arc(x pos, y pos, radius, start angle, end angle, anticlockwise?) =>
 x,y => position of arc's centre
