@@ -72,7 +72,7 @@ function drawBricks() {
 function rectangleCircleCollision(r, xc, yc, x1, y1, x2, y2) {
 
   let xn = Math.max(x1, Math.min(xc, x2)); //closest x to circle's centre x on rectangle
-  let yn = Math.max(y2, Math.min(yc, y1)); //closest y to circles' centre y on rectangle
+  let yn = Math.max(y1, Math.min(yc, y2)); //closest y to circles' centre y on rectangle
 
   let diffX = xn - xc;
   let diffY = yn - yc;
