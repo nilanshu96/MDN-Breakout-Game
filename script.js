@@ -71,6 +71,8 @@ function drawBricks() {
 
 function rectangleCircleCollision(r, xc, yc, x1, y1, x2, y2) {
 
+  //the calculation is based on the fact that the value of y is positive going downward from 0,0 unlike normal graphs where it gets negative 
+
   let xn = Math.max(x1, Math.min(xc, x2)); //closest x to circle's centre x on rectangle
   let yn = Math.max(y1, Math.min(yc, y2)); //closest y to circles' centre y on rectangle
 
