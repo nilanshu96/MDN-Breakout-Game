@@ -69,15 +69,23 @@ function drawBricks() {
 
 }
 
+function rectangleCircleCollision(r, xc, yc, x1, y1, x2, y2) {
+
+  let xn = Math.max(x1, Math.min(xc, x2)); //closest x to circle's centre x on rectangle
+  let yn = Math.max(y2, Math.min(yc, y1)); //closest y to circles' centre y on rectangle
+
+  let diffX = xn - xc;
+  let diffY = yn - yc;
+
+  return (diffX * diffX + diffY * diffY) <= r * r;
+}
+
 function collisionDetection() {
   for (let r = 0; r < brickRowCount; r++)
     for (let c = 0; c < brickColumnCount; c++)
       if (bricks[r][c].status) {
         let b = bricks[r][c];
-        if (x >= b.x &&
-          x <= b.x + brickWidth &&
-          y >= b.y &&
-          y <= b.y + brickHeight) {
+        if (rectangleCircleCollision(ballRadius, x, y, b.x, b.y, b.x + brickWidth, b.y + brickHeight)) {
           dy = -dy;
           b.status = false;
         }
@@ -96,8 +104,9 @@ function draw() {
   if (y + dy < ballRadius) {
     dy = -dy;
   } else if (y + dy > canvas.height - ballRadius) {
-    if (x > paddleX && x < paddleX + paddleWidth) {
+    if (rectangleCircleCollision(ballRadius, x, y, paddleX, paddleY, paddleX + paddleWidth, paddleY )) { //last param is not paddlY+paddleHeight because we only care about the collision from the top of paddle
       dy = -dy;
+      if (x < paddleX || x > paddleX + paddleWidth) dx = -dx;
     } else {
       alert("Game Over!");
       document.location.reload();
