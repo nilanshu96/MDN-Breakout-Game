@@ -47,24 +47,41 @@ let bricks = [];
 for (let r = 0; r < brickRowCount; r++) {
   bricks[r] = [];
   for (let c = 0; c < brickColumnCount; c++) {
-    bricks[r][c] = { x: 0, y: 0 };
+    bricks[r][c] = { x: 0, y: 0, status: true };
   }
 }
 
 function drawBricks() {
 
-  for(r=0; r<brickRowCount; r++)
-    for(c=0; c<brickColumnCount; c++) {
-      let brickX = c*(brickWidth + brickPadding) + brickOffsetLeft;
-      let brickY = r*(brickHeight + brickPadding) + brickOffsetTop;
-      bricks[r][c].x = brickX;
-      bricks[r][c].y = brickY;
-      ctx.beginPath();
-      ctx.rect(brickX, brickY, brickWidth, brickHeight);
-      ctx.fillStyle = "#0095DD";
-      ctx.fill();
-      ctx.closePath();
-    }
+  for (r = 0; r < brickRowCount; r++)
+    for (c = 0; c < brickColumnCount; c++)
+      if (bricks[r][c].status) {
+        let brickX = c * (brickWidth + brickPadding) + brickOffsetLeft;
+        let brickY = r * (brickHeight + brickPadding) + brickOffsetTop;
+        bricks[r][c].x = brickX;
+        bricks[r][c].y = brickY;
+        ctx.beginPath();
+        ctx.rect(brickX, brickY, brickWidth, brickHeight);
+        ctx.fillStyle = "#0095DD";
+        ctx.fill();
+        ctx.closePath();
+      }
+
+}
+
+function collisionDetection() {
+  for (let r = 0; r < brickRowCount; r++)
+    for (let c = 0; c < brickColumnCount; c++)
+      if (bricks[r][c].status) {
+        let b = bricks[r][c];
+        if (x >= b.x &&
+          x <= b.x + brickWidth &&
+          y >= b.y &&
+          y <= b.y + brickHeight) {
+          dy = -dy;
+          b.status = false;
+        }
+      }
 }
 
 function draw() {
@@ -73,6 +90,7 @@ function draw() {
   drawBricks();
   drawBall(x, y, ballRadius);
   drawPaddle();
+  collisionDetection();
 
   if (x + dx < ballRadius || x + dx > canvas.width - ballRadius) dx = -dx;
   if (y + dy < ballRadius) {
