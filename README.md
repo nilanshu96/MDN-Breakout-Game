@@ -11,7 +11,7 @@ The project uses [Parcel](https://parceljs.org/) to build a version with minifie
 **Steps to build and run the project**:
 
 1. Use 'npm start' to run the project on localhost:1234
-2. Use 'npm run build' to create a build by minifying the files
+2. Use 'npm run deploy' to create a build by minifying the files and publish it to gh-pages branch of your git
 
 
 ##Notes:
