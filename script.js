@@ -127,13 +127,10 @@ function draw() {
   drawPaddle();
   drawScore();
   drawLives();
-  if (score === brickRowCount * brickColumnCount) {
-    //alert is run separately because it blocks the main thread from painting on screen
-
+  if (score === brickRowCount * brickColumnCount) {  
     alert("You Win!");
     score = 0;
     document.location.reload();
-
   }
   collisionDetection();
 
