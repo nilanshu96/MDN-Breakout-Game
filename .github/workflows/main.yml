@@ -35,6 +35,8 @@ jobs:
       - name: Deploy build to gh-pages
         run: |
           git remote set-url --push origin https://nilanshu96:$GITHUB_TOKEN@github.com/MDN-Breakout-Game.git
+          git config --global user.name $username
           npm run deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          username: ${{ github.actor }}
