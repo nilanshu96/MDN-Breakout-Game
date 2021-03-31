@@ -14,7 +14,7 @@ The project uses [Parcel](https://parceljs.org/) to build a version with minifie
 2. Use 'npm run deploy' to create a build by minifying the files and publish it to gh-pages branch of your git
 
 
-##Notes:
+## Notes:
 
 * The fillStyle, fill, stroke, strokeStyle methods all only work for the shapes and lines that come after a beginPath.
 beginPath contains all the list of all the sub paths for which the above fill and stroke command works.
