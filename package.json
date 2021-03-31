@@ -5,7 +5,7 @@
   "main": "script.js",
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build index.html --out-dir build/",
+    "build": "parcel build index.html --out-dir build --public-url ./",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "test": "echo \"Error: no test specified\" && exit 1"
