@@ -5,7 +5,7 @@
 **Information Regarding Paths**: https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Drawing_shapes#drawing_paths
 
 **Information on Collision Detection**: https://www.geeksforgeeks.org/check-if-any-point-overlaps-the-given-circle-and-rectangle/
-
+___
 
 The project uses [Parcel](https://parceljs.org/) to build a version with minified project files
 
@@ -14,6 +14,7 @@ The project uses [Parcel](https://parceljs.org/) to build a version with minifie
 1. Use 'npm start' to run the project on localhost:1234
 2. Use 'npm run deploy' to create a build by minifying the files and publish it to gh-pages branch of your git
 
+___
 
 ## Notes:
 
