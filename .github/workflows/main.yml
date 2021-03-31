@@ -27,14 +27,14 @@ jobs:
         with:
           node-version: '12'
           
-      - run: git remote set-url https://nilanshu96:$GITHUB_TOKEN@github.com/MDN-Breakout-Game.git
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       # npm ci is a faster way to install modules on automated environments
       - name: install modules
         run: npm ci
 
       # Deploy the build folder to gh-pages
       - name: Deploy build to gh-pages
-        run: npm run deploy
+        run: |
+          git remote set-url --push https://nilanshu96:$GITHUB_TOKEN@github.com/MDN-Breakout-Game.git
+          npm run deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
