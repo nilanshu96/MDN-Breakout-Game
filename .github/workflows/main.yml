@@ -27,7 +27,7 @@ jobs:
         with:
           node-version: '12'
           
-      - run: git remote add origin https://nilanshu96:$GITHUB_TOKEN@github.com/MDN-Breakout-Game.git
+      - run: git remote set-url https://nilanshu96:$GITHUB_TOKEN@github.com/MDN-Breakout-Game.git
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
