@@ -1,9 +1,24 @@
-* {
-  padding: 0;
-  margin: 0;
+html {
+  overflow: hidden;
+}
+
+body {
+  background-color: rgb(45, 45, 45);
+}
+.container {
+  height: 100vh;
+  display: flex;
+  flex-flow: column wrap;
+  gap: 50px;
+}
+
+h1 {
+  text-align: center;
+  color: wheat;
+  padding: 20px;
 }
 canvas {
   background: #eee;
   display: block;
-  margin: 0 auto;
+  align-self: center;
 }
