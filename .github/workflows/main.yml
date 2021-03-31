@@ -27,7 +27,9 @@ jobs:
         with:
           node-version: '12'
           
-      - run: git config --global user.name "nilanshu96"
+      - run: git remote set-url --push origin https://nilanshu96:$GITHUB_TOKEN@github.com/MDN-Breakout-Game.git
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # npm ci is a faster way to install modules on automated environments
       - name: install modules
