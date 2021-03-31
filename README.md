@@ -21,3 +21,9 @@ clearRect(x1, y1, x2, y2) => clears the reactangle defined by the coordinates
 (x1, y1) => top left 
 (x2, y2) => bottom right
 
+ctx.font = "16px Arial"
+ctx.font is the same as a css font value
+
+ctx.fillText("text",x,y) => fills text at x,y location
+ctx.strokeText("text",x,y) => Strokes a text, ie, draws only the outline at x,y location
+

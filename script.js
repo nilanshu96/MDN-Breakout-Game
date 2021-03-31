@@ -4,6 +4,9 @@ let ctx = canvas.getContext('2d');
 
 let interval;
 
+let score = 0;
+let lives = 3;
+
 const ballRadius = 10;
 
 let x = canvas.width / 2;
@@ -82,6 +85,14 @@ function rectangleCircleCollision(r, xc, yc, x1, y1, x2, y2) {
   return (diffX * diffX + diffY * diffY) <= r * r;
 }
 
+function drawScore() {
+  ctx.beginPath();
+  ctx.font = "16px Arial";
+  ctx.fillStyle = "#0095DD";
+  ctx.fillText("Score: " + score, 8, 20);
+  // ctx.closePath();
+}
+
 function collisionDetection() {
   for (let r = 0; r < brickRowCount; r++)
     for (let c = 0; c < brickColumnCount; c++)
@@ -90,8 +101,16 @@ function collisionDetection() {
         if (rectangleCircleCollision(ballRadius, x, y, b.x, b.y, b.x + brickWidth, b.y + brickHeight)) {
           dy = -dy;
           b.status = false;
+          score++;
         }
       }
+}
+
+function mouseMoveHandler(e) {
+  let relativeX = e.clientX - canvas.offsetLeft;
+  if(relativeX > 0 && relativeX < canvas.width) {
+    paddleX = relativeX - paddleWidth/2;
+  }
 }
 
 function draw() {
@@ -100,6 +119,15 @@ function draw() {
   drawBricks();
   drawBall(x, y, ballRadius);
   drawPaddle();
+  drawScore();
+  if(score === brickRowCount*brickColumnCount) {
+    //alert is run separately because it blocks the main thread from painting on screen
+    setTimeout(() => {
+      alert("You Win!");
+      document.location.reload();
+      clearInterval(interval);
+    })
+  }
   collisionDetection();
 
   if (x + dx < ballRadius || x + dx > canvas.width - ballRadius) dx = -dx;
@@ -156,5 +184,6 @@ interval = setInterval(draw, 10);
 
 document.addEventListener("keyup", keyUpHandler);
 document.addEventListener("keydown", keyDownHandler);
+document.addEventListener("mousemove", mouseMoveHandler);
 
 
