@@ -26,6 +26,8 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '12'
+          
+      - run: git config --global user.name "nilanshu96"
 
       # npm ci is a faster way to install modules on automated environments
       - name: install modules
