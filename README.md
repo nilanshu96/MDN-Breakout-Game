@@ -8,6 +8,7 @@
 
 
 The project uses [Parcel](https://parceljs.org/) to build a version with minified project files
+
 **Steps to build and run the project**:
 
 1. Use 'npm start' to run the project on localhost:1234
