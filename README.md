@@ -1,8 +1,20 @@
+**Demo**: https://nilanshu96.github.io/MDN-Breakout-Game/
+
 **MDN Breakout Tutorial**: https://developer.mozilla.org/en-US/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript
 
 **Information Regarding Paths**: https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Drawing_shapes#drawing_paths
 
 **Information on Collision Detection**: https://www.geeksforgeeks.org/check-if-any-point-overlaps-the-given-circle-and-rectangle/
+
+
+The project uses [Parcel](https://parceljs.org/) to build a version with minified project files
+**Steps to build and run the project**:
+
+1. Use 'npm start' to run the project on localhost:1234
+2. Use 'npm run build' to create a build by minifying the files
+
+
+##Notes:
 
 * The fillStyle, fill, stroke, strokeStyle methods all only work for the shapes and lines that come after a beginPath.
 beginPath contains all the list of all the sub paths for which the above fill and stroke command works.
