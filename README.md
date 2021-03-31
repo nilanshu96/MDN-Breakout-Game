@@ -27,3 +27,6 @@ ctx.font is the same as a css font value
 ctx.fillText("text",x,y) => fills text at x,y location
 ctx.strokeText("text",x,y) => Strokes a text, ie, draws only the outline at x,y location
 
+requestAnimationFrame(callback);
+calls the callback function according to the refresh rate of the screen
+
