@@ -12,8 +12,14 @@ const ballRadius = 10;
 let x = canvas.width / 2;
 let y = canvas.height - 30;
 
-let dx = 2;
-let dy = -2;
+let dx = 5;
+let dy = -5;
+
+let paddleHeight = 10;
+let paddleWidth = 75;
+let paddleX = (canvas.width - paddleWidth) / 2;
+let paddleY = canvas.height - paddleHeight;
+
 
 function drawBall(x, y, radius) {
 
@@ -23,12 +29,6 @@ function drawBall(x, y, radius) {
   ctx.fill();
   ctx.closePath();
 }
-
-
-let paddleHeight = 10;
-let paddleWidth = 75;
-let paddleX = (canvas.width - paddleWidth) / 2;
-let paddleY = canvas.height - paddleHeight;
 
 function drawPaddle() {
   ctx.beginPath();
@@ -108,9 +108,15 @@ function collisionDetection() {
 
 function mouseMoveHandler(e) {
   let relativeX = e.clientX - canvas.offsetLeft;
-  if(relativeX > 0 && relativeX < canvas.width) {
-    paddleX = relativeX - paddleWidth/2;
+  if (relativeX > 0 && relativeX < canvas.width) {
+    paddleX = relativeX - paddleWidth / 2;
   }
+}
+
+function drawLives() {
+  ctx.font = "16px Arial";
+  ctx.fillStyle = "#0095DD";
+  ctx.fillText("Lives: " + lives, canvas.width - 65, 20);
 }
 
 function draw() {
@@ -120,13 +126,14 @@ function draw() {
   drawBall(x, y, ballRadius);
   drawPaddle();
   drawScore();
-  if(score === brickRowCount*brickColumnCount) {
+  drawLives();
+  if (score === brickRowCount * brickColumnCount) {
     //alert is run separately because it blocks the main thread from painting on screen
-    setTimeout(() => {
-      alert("You Win!");
-      document.location.reload();
-      clearInterval(interval);
-    })
+
+    alert("You Win!");
+    score = 0;
+    document.location.reload();
+
   }
   collisionDetection();
 
@@ -134,13 +141,20 @@ function draw() {
   if (y + dy < ballRadius) {
     dy = -dy;
   } else if (y + dy > canvas.height - ballRadius) {
-    if (rectangleCircleCollision(ballRadius, x, y, paddleX, paddleY, paddleX + paddleWidth, paddleY )) { //last param is not paddlY+paddleHeight because we only care about the collision from the top of paddle
+    if (rectangleCircleCollision(ballRadius, x, y, paddleX, paddleY, paddleX + paddleWidth, paddleY)) { //last param is not paddlY+paddleHeight because we only care about the collision from the top of paddle
       dy = -dy;
       if (x < paddleX || x > paddleX + paddleWidth) dx = -dx;
+    } else if (lives > 1) {
+      lives--;
+      x = canvas.width / 2;
+      y = canvas.height - 30;
+      dx = 5;
+      dy = -5;
+      paddleX = (canvas.width - paddleWidth) / 2;
     } else {
       alert("Game Over!");
+      lives = 3;
       document.location.reload();
-      clearInterval(interval);
     }
   }
 
@@ -158,6 +172,8 @@ function draw() {
       paddleX = 0
     }
   }
+
+  requestAnimationFrame(draw);
 }
 
 let rightPressed = false;
@@ -180,7 +196,7 @@ function keyUpHandler(event) {
   }
 }
 
-interval = setInterval(draw, 10);
+draw();
 
 document.addEventListener("keyup", keyUpHandler);
 document.addEventListener("keydown", keyDownHandler);
